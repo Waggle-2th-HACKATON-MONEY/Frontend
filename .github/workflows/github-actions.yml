@@ -22,7 +22,7 @@ jobs:
         uses: google-github-actions/deploy-appengine@v1
         with:
           working_directory: server
-          project_id: ${{ secrets.GCP_PROJECT }}
+          project_id: ${{ secrets.GCE_PROJECT }}
 
 
       - name: Docker build and push
