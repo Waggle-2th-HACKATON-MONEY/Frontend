@@ -36,10 +36,10 @@ jobs:
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_SSH_KEY }}
+          key: ${{ secrets.SSH_KEY }}
           script: |
             docker stop $(docker ps -a -q) 
             docker rm $(docker ps -a -q) 
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/moneyti-react:latest
             sudo docker tag ${{ secrets.DOCKER_USERNAME }}/moneyti-react:latest moneyti-react
-            sudo docker run -d -p 3000:3000 joowojr/moneyti-react:latest
+            sudo docker run -d -p 3000:3000 ${{ secrets.DOCKER_USERNAME }}/moneyti-react:latest
