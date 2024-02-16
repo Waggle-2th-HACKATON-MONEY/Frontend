@@ -1,0 +1,10 @@
+.mainpage {
+  max-width: 60rem;
+  width: 100%;
+}
+
+@media only screen and (max-width: 40rem) {
+  .mainpage {
+    width: 100%;
+  }
+}
