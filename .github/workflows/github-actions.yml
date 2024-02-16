@@ -30,6 +30,7 @@ jobs:
           script: |
             sudo docker stop moneyti-react
             sudo docker rm moneyti-react
+            sudo docker rmi moneyti-react
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/moneyti-react:latest
             sudo docker tag ${{ secrets.DOCKER_USERNAME }}/moneyti-react:latest moneyti-react
             sudo docker run -d -p 3000:3000 --name moneyti-react moneyti-react
