@@ -1,1 +1,25 @@
-.
+name: moneyTI React CI/CD
+
+on:
+  push:
+    branches: [ "develop" ]
+  pull_request:
+    branches: [ "develop" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          submodules: "recursive"
+      - name: Auth to GCP
+        uses: "google-github-actions/auth@v1"
+        with:
+          credentials_json: ${{ secrets.GCE_SA_KEY }}
+      - name: Deploy to App Engine
+        uses: google-github-actions/deploy-appengine@v1
+        with:
+          working_directory: server
+          project_id: ${{ secrets.GCP_PROJECT }}
