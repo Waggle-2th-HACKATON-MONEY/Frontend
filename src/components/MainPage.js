@@ -1,7 +1,9 @@
 import "./MainPage.css";
 import StartTest from "./StartTest";
+import { useNavigate } from "react-router-dom";
 
 const MainPage = () => {
+  
   return (
     <div className=" flex flex-col justify-center items-center w-[40%] bg-[#FFC288] h-[90%] rounded-[10px] m-auto ">
       <div className=" mt-[10%] mb-[40%] w-[80%] h-[160px] rounded-[10px] bg-[#FCECDD]">

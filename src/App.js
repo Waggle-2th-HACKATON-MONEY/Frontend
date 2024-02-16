@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainPage from "./components/MainPage";
 import Result from "./components/Result";
 import Board from "./components/Board";
+import QuestionPage from "./components/QuestionPage";
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
           <Route path="/" element={<MainPage />}></Route>
           <Route path="/result" element={<Result />}></Route>
           <Route path="/Board" element={<Board />}></Route>
-          {/* <Route path="*" element={<NotFound />}></Route> */}
+          <Route path="/question" element={<QuestionPage />}></Route>
         </Routes>
       </BrowserRouter>
     </div>
