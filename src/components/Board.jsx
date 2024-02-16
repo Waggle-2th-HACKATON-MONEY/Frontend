@@ -1,5 +1,5 @@
 import "./MainPage.css";
-import Comment from "./items/Comment";
+import Comment from "../items/Comment";
 
 const Board = ({ moneyType, comment }) => {
   return (

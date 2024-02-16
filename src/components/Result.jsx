@@ -1,4 +1,4 @@
-import Button from "./items/Button";
+import Button from "../items/Button";
 import "./MainPage.css";
 import StartTest from "./StartTest";
 import { useNavigate } from "react-router-dom";
