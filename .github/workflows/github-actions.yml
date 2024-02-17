@@ -1,0 +1,36 @@
+name: moneyTI React CI/CD
+
+on:
+  push:
+    branches: [ "develop" ]
+  pull_request:
+    branches: [ "develop" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          submodules: "recursive"
+
+      - name: Docker build and push
+        run: |
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/moneyti-react .
+          docker push ${{ secrets.DOCKER_USERNAME }}/moneyti-react:latest
+
+      - name: Deploy to server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            sudo docker stop moneyti-react
+            sudo docker rm moneyti-react
+            sudo docker rmi moneyti-react
+            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/moneyti-react:latest
+            sudo docker tag ${{ secrets.DOCKER_USERNAME }}/moneyti-react:latest moneyti-react
+            sudo docker run -d -p 3000:3000 --name moneyti-react moneyti-react
