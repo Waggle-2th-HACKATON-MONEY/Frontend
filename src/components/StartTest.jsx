@@ -7,9 +7,9 @@ const StartTest = () => {
       navigate("/question");
     }
     return (
-        <div className='flex flex-col items-center w-[240px] gap-y-1 cursor-pointer ' onClick={handleClick}>
+        <div className='flex flex-col items-center w-[60%] gap-y-3 cursor-pointer ' onClick={handleClick}>
             <img src={process.env.PUBLIC_URL + '/images/grandma.png'} alt="grandMa" />
-            <div className=" text-orange-500 text-[28px] ">테스트 시작</div>
+            <div className=" text-[#FF6701] text-[40px] ">테스트 시작</div>
         </div>
     );
 };

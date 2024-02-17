@@ -1,31 +1,53 @@
-import { useRecoilValue, useResetRecoilState, useSetRecoilState } from "recoil";
-import { scoreState } from "../recoil/state";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { scoreState, types } from "../recoil/state";
 import { useState } from "react";
 import { questions } from "../data/questions";
+import { useNavigate } from "react-router-dom";
+import { postScore } from "../apis/postScore";
 
 const QuestionPage = () => {
+  const [num, setNum] = useState(0);
+  const score = useRecoilValue(scoreState);
   const setContent = useSetRecoilState(scoreState);
-  const content = useRecoilValue(scoreState);
+  const type = useRecoilValue(types);
+  const setTypes = useSetRecoilState(types);
+  const navigate = useNavigate();
 
   const answerYes = () => {
     setNum(num + 1);
-    setContent((content) => [...content, 1]);
-    console.log(content);
+    setContent((score) => [...score, 1]);
+    if (num === 9) {
+      postScore(score).then((getType)=>{
+        setTypes(getType);
+        navigate("/result");
+      })
+    }
+    console.log(type);
   };
 
   const answerNo = () => {
     setNum(num + 1);
-    setContent((content) => [...content, 0]);
-    console.log(content);
+    setContent((score) => [...score, 0]);
+    console.log(score);
+    if (num === 9) {
+      postScore(score).then((getType)=>{
+        setTypes(getType);
+        navigate("/result");
+      })
+    }
   };
 
   const cancelQuestion = () => {
+    if (num === 0) navigate("/");
     setNum(num - 1);
-    setContent((content) => [...content, 0]);
-    console.log(content);
+    setContent((prevScore) => {
+      const newScore = [...prevScore];
+      newScore.pop();
+      return newScore;
+    });
+    console.log(score);
   };
-
-  const [num, setNum] = useState(0);
+  console.log(score);
 
   return (
     <div className=" w-[40%] bg-[#FFC288] h-[100%] m-auto pt-[20px]">
@@ -38,19 +60,15 @@ const QuestionPage = () => {
         </div>
       </div>
       <div className="w-[80%] h-[65%] flex-col bg-orange-100 rounded-2xl m-auto p-[6%] flex">
-        <div className="w-[20%] h-[15%] text-black text-5xl">
-          Q{num + 1}.
-        </div>
+        <div className="w-[20%] h-[15%] text-black text-5xl">Q{num + 1}.</div>
         <div className="flex flex-col items-center gap-y-8">
           <div className=" flex justify-center items-center w-[50%] ">
             <img
-              src={process.env.PUBLIC_URL + "images/goldPig.png"}
+              src={process.env.PUBLIC_URL + `images/question${num + 1}.png`}
               alt="image"
             />
           </div>
-          <div className="mt-[40px] text-black text-2xl">
-            {questions[num]}
-          </div>
+          <div className="mt-[40px] text-black text-3xl">{questions[num]}</div>
         </div>
       </div>
       <div className="w-[80%] h-[20%] flex flex-col m-auto mt-[35px]  rounded-lg text-black text-4xl font-thin font-['CookieRun'] gap-y-3">
