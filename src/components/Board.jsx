@@ -17,7 +17,7 @@ const Board = ({ moneyType, comment }) => {
   };
   return (
     <div className=" flex flex-col items-center w-[40%] bg-[#FFC288] h-[100%] rounded-[10px] m-auto overflow-y-auto scrollbar-hide">
-      <div className=" color-[#FF6701] text-6xl mt-8">{type.moneyTI} 게시판</div>
+      <div className=" color-[#FF6701] text-5xl mt-8">{type[0].moneyTI} 유형 게시판</div>
       <div className="flex flex-col items-center justify-center mt-[6%] mb-[5%] pt-[4%] px-[4%] w-[90%] gap-y-3 h-[auto] rounded-[10px] text-5xl bg-[#FCECDD]">
       {boards.map((board, index) => (
         <Comment key={index} comment={board.content} />

@@ -4,6 +4,7 @@ import MainPage from "./components/MainPage";
 import Result from "./components/Result";
 import Board from "./components/Board";
 import QuestionPage from "./components/QuestionPage";
+import Loading from "./items/Loading";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/result" element={<Result />}></Route>
           <Route path="/Board" element={<Board />}></Route>
           <Route path="/question" element={<QuestionPage />}></Route>
+          <Route path="/loading" element={<Loading />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

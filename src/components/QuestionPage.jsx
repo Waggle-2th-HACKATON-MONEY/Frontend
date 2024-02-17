@@ -17,10 +17,11 @@ const QuestionPage = () => {
     setNum(num + 1);
     setContent((score) => [...score, 1]);
     if (num === 9) {
-      postScore(score).then((getType)=>{
+      navigate('/loading');
+      postScore(score).then((getType) => {
         setTypes(getType);
         navigate("/result");
-      })
+      });
     }
     console.log(type);
   };
@@ -30,10 +31,11 @@ const QuestionPage = () => {
     setContent((score) => [...score, 0]);
     console.log(score);
     if (num === 9) {
-      postScore(score).then((getType)=>{
+      navigate('loading');
+      postScore(score).then((getType) => {
         setTypes(getType);
         navigate("/result");
-      })
+      });
     }
   };
 
@@ -59,19 +61,23 @@ const QuestionPage = () => {
           <img src={process.env.PUBLIC_URL + "images/backButton.png"} />
         </div>
       </div>
-      <div className="w-[80%] h-[65%] flex-col bg-orange-100 rounded-2xl m-auto p-[6%] flex">
+      <div className="w-[80%] h-[65%] relative bg-orange-100 rounded-2xl m-auto p-[6%] ">
         <div className="w-[20%] h-[15%] text-black text-5xl">Q{num + 1}.</div>
         <div className="flex flex-col items-center gap-y-8">
-          <div className=" flex justify-center items-center w-[50%] ">
+          <div className=" flex justify-center items-center w-[50%] h-[50%] ">
             <img
               src={process.env.PUBLIC_URL + `images/question${num + 1}.png`}
               alt="image"
             />
           </div>
-          <div className="mt-[40px] text-black text-3xl">{questions[num]}</div>
+        </div>
+        <div className="flex items-center justify-center">
+          <div className=" top-[400px] absolute text-black text-[18px] break-words flex">
+            {questions[num]}
+          </div>
         </div>
       </div>
-      <div className="w-[80%] h-[20%] flex flex-col m-auto mt-[35px]  rounded-lg text-black text-4xl font-thin font-['CookieRun'] gap-y-3">
+      <div className="w-[80%] h-[20%] flex flex-col m-auto mt-[35px]  rounded-lg text-black text-4xl gap-y-3">
         <div
           className="flex items-center justify-center w-[100%] h-[70%] bg-orange-100 rounded-[10px] cursor-pointer"
           onClick={answerYes}
