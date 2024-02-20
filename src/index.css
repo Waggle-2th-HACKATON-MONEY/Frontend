@@ -29,9 +29,9 @@ body {
   padding: none;
 
   display: flex;
-  justify-content: center; /* 수평 가운데 정렬 */
-  align-items: center; /* 수직 가운데 정렬 */
-  min-height: 100vh; /* 화면 전체 높이로 설정 */
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -41,7 +41,4 @@ body {
   width: 100vw;
   min-height: 100vh;
   height: 100%;
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
 }

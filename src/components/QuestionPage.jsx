@@ -17,7 +17,7 @@ const QuestionPage = () => {
     setNum(num + 1);
     setContent((score) => [...score, 1]);
     if (num === 9) {
-      navigate('/loading');
+      navigate("/loading");
       postScore(score).then((getType) => {
         setTypes(getType);
         navigate("/result");
@@ -31,7 +31,7 @@ const QuestionPage = () => {
     setContent((score) => [...score, 0]);
     console.log(score);
     if (num === 9) {
-      navigate('loading');
+      navigate("loading");
       postScore(score).then((getType) => {
         setTypes(getType);
         navigate("/result");
@@ -47,9 +47,7 @@ const QuestionPage = () => {
       newScore.pop();
       return newScore;
     });
-    console.log(score);
   };
-  console.log(score);
 
   return (
     <div className=" w-[40%] bg-[#FFC288] h-[100%] m-auto pt-[20px]">

@@ -9,18 +9,14 @@ import { getBoard } from "../apis/getBoard";
 const Result = () => {
   let navigate = useNavigate();
   const type = useRecoilValue(types);
-  const boards = useRecoilValue(board);
   const setBoards = useSetRecoilState(board);
   const [text, setText] = useState("");
-  const saveType = type;
   console.log(text);
 
   function onSubmit() {
     postComment(text, type.moneyTI);
     getBoard(0, type.moneyTI).then((boards) => {
       setBoards(boards.result);
-      console.log("가져온 보드 모습", boards);
-      console.log("가져온 보드 모습", boards.result);
       navigate("/Board");
     });
   }
@@ -35,16 +31,23 @@ const Result = () => {
           <img src={process.env.PUBLIC_URL + `images/${type.moneyTI}.png`} />
         </div>
         <div className="flex flex-col w-[95%] break-all  h-[auto] m-[5%] bg-[#FFC288] gap-y-3 rounded-[10px] p-[4%] text-[28px] scrollbar-hide">
-          <h1 className="text-[32px] w-[auto] p-4 rounded-xl bg-white">추천 습관</h1>
-          <div className="text-[24px] leading-10	">{type?.gptRecommend?.recommendHabit}</div>
-          <h1 className="text-[32px] p-4 rounded-xl bg-white">추천 투자 방법</h1>
+          <h1 className="text-[32px] w-[auto] p-4 rounded-xl bg-white">
+            추천 습관
+          </h1>
           <div className="text-[24px] leading-10	">
-          {type?.gptRecommend?.recommendHabit}
-
+            {type?.gptRecommend?.recommendHabit}
+          </div>
+          <h1 className="text-[32px] p-4 rounded-xl bg-white">
+            추천 투자 방법
+          </h1>
+          <div className="text-[24px] leading-10	">
+            {type?.gptRecommend?.recommendHabit}
           </div>
         </div>
         <div className="flex flex-col gap-y-3 items-center justify-center w-[95%] h-[50%] ">
-          <div className="text-[18px]">현재 본인의 재테크 방법을 공유해주세요!</div>
+          <div className="text-[18px]">
+            현재 본인의 재테크 방법을 공유해주세요!
+          </div>
           <textarea
             onChange={(e) => setText(e.target.value)}
             className="w-[100%] h-[90%] text-[18px] p-[3%] rounded-[10px]"

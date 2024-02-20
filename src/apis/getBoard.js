@@ -9,7 +9,6 @@ export async function getBoard(page, type) {
         },
       }
     );
-    console.log(" get Board 요청후 가져온 데이터", response.data);
     return response.data;
   } catch (e) {
     console.log("여기서 나온 에러임", e);

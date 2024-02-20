@@ -10,9 +10,3 @@ const Button = ({ text, onClickHandler }) => {
 };
 
 export default Button;
-
-{/* <div className="flex flex-col gap-y-4 w-[95%]">
-<Button text="게시판 커뮤니티" onClickHandler={console.log("hi")} />
-
-<Button text="처음으로 돌아가기" onClickHandler={console.log("hi")} />
-   </div> */}
